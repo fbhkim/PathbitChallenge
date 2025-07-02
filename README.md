@@ -160,15 +160,3 @@ dotnet add reference ..\Application\PathbitChallenge.Application.csproj
 cd ..\..\tests\UnitTests
 dotnet add reference ..\..\src\Application\PathbitChallenge.Application.csproj
 cd ..\..
-
-Compila de novo:dotnet build
-
-Commit no Git
-Depois de aplicar as mudanças:
-cd "C:\Users\felipe kim\OneDrive\Área de Trabalho\fbhk\PathbitChallenge"
-git add .
-git commit -m "Atualizado README com vibe mais de boa e corrigido erro CS0246"
-git push origin main
-
-Fale comigo!
-Se tiver dúvidas ou quiser melhorar algo, manda um e-mail pra [seu-email@example.com] ou abre uma issue no GitHub. Bora fazer essa API ficar ainda mais irada!# PathbitChallenge
