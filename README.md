@@ -1,4 +1,5 @@
-PathbitChallenge -
+PathbitChallenge
+
 Essa é uma API REST maneirinha pra gerenciar usuários, clientes, produtos e pedidos. Feita com .NET 8.0, usando DDD, SOLID, Clean Code, PostgreSQL, Entity Framework Core, autenticação JWT, Swagger pra documentação e testes unitários pra garantir que tá tudo nos conformes.
 O que tem na parada?
 
