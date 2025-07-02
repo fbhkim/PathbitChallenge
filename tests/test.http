@@ -1,0 +1,41 @@
+### Signup Test
+### Signup
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+
+### Login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+
+### Create Product (com token JWT válido)
+POST http://localhost:5000/api/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+{
+  "name": "Sample Product",
+  "price": 99.99,
+  "availableQuantity": 100
+}
+
+### Create Order (com token JWT válido)
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+{
+  "productId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "quantity": 2,
+  "deliveryCep": "12345-678"
+}
