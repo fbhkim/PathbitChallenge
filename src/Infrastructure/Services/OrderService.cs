@@ -23,7 +23,7 @@ public class OrderService : IOrderService
 
   public async Task<Result<OrderResponse>> CreateOrderAsync(CreateOrderRequest request, Guid customerId)
   {
-    // 1. Validar o endereço via CEP
+    
     var addressInfo = await _cepService.GetAddressByCepAsync(request.DeliveryCep);
     if (addressInfo is null)
     {
@@ -31,12 +31,12 @@ public class OrderService : IOrderService
     }
     var fullAddress = $"{addressInfo.Endereco}, {addressInfo.Bairro}, {addressInfo.Cidade} - {addressInfo.Estado}";
 
-    // 2. Usar uma transação para garantir a consistência
+    
     await using var transaction = await _context.Database.BeginTransactionAsync();
 
     try
     {
-      // 3. Validar se o produto existe e tem estoque
+      
       var product = await _context.Products.FindAsync(request.ProductId);
       if (product is null)
       {
@@ -47,10 +47,10 @@ public class OrderService : IOrderService
         return Result.Failure<OrderResponse>($"Estoque insuficiente. Disponível: {product.AvailableQuantity}.");
       }
 
-      // 4. Baixar o estoque
+      
       product.DecreaseStock(request.Quantity);
 
-      // 5. Criar o pedido (Order)
+    
       var order = new Order
       {
         CustomerId = customerId,
@@ -59,7 +59,7 @@ public class OrderService : IOrderService
         TotalPrice = product.Price * request.Quantity,
         DeliveryCep = request.DeliveryCep,
         DeliveryAddress = fullAddress,
-        Status = OrderStatus.ENVIADO // Conforme requisito
+        Status = OrderStatus.ENVIADO 
       };
 
       _context.Orders.Add(order);
@@ -79,7 +79,7 @@ public class OrderService : IOrderService
     }
   }
 
-  // Implemente os métodos de busca aqui...
+ 
   public Task<OrderResponse?> GetOrderByIdAsync(Guid id, Guid customerId)
   {
     throw new NotImplementedException();

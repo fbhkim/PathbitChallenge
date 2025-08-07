@@ -8,7 +8,7 @@ namespace PathbitChallenge.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "CLIENTE")] // Controller exclusivo para clientes
+[Authorize(Roles = "CLIENTE")] 
 public class OrdersController : ControllerBase
 {
   private readonly IOrderService _orderService;

@@ -22,7 +22,7 @@ public class AuthServiceTests
     _passwordHasherMock = new Mock<IPasswordHasher>();
     _tokenServiceMock = new Mock<ITokenService>();
 
-    // Usar um banco de dados em memória para os testes
+    
     var options = new DbContextOptionsBuilder<AppDbContext>()
         .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
         .Options;
@@ -32,16 +32,16 @@ public class AuthServiceTests
   [Fact]
   public async Task SignUpAsync_ShouldReturnSuccess_WhenUserDoesNotExist()
   {
-    // Arrange
+    
     var request = new SignUpRequest("Test User", "test@test.com", "password123");
     _passwordHasherMock.Setup(p => p.Hash(It.IsAny<string>())).Returns("hashed_password");
 
     var authService = new AuthService(_context, _passwordHasherMock.Object, _tokenServiceMock.Object);
 
-    // Act
+   
     var result = await authService.SignUpAsync(request);
 
-    // Assert
+    
     result.IsSuccess.Should().BeTrue();
     _context.Users.Should().HaveCount(1);
     _context.Customers.Should().HaveCount(1);

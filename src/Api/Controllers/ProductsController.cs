@@ -9,7 +9,7 @@ namespace PathbitChallenge.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize] // Todos endpoints aqui precisam de autorização
+[Authorize] 
 public class ProductsController : ControllerBase
 {
   private readonly AppDbContext _context;

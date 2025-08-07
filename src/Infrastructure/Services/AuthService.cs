@@ -22,7 +22,7 @@ public class AuthService : IAuthService
 
   public async Task<Result<LoginResponse>> LoginAsync(LoginRequest request)
   {
-    // Corrigido: buscar pelo Email, não Username
+   
     var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
 
     if (user is null || !_passwordHasher.Verify(request.Password, user.PasswordHash))
@@ -42,7 +42,7 @@ public class AuthService : IAuthService
 
   public async Task<Result> SignUpAsync(SignUpRequest request)
   {
-    // Corrigido: verificar se já existe um usuário com o mesmo Email
+    
     var userExists = await _context.Users.AnyAsync(u => u.Email == request.Email);
     if (userExists)
     {
@@ -57,10 +57,10 @@ public class AuthService : IAuthService
 
     var user = new User
     {
-      Username = request.Email, // Usando o email como username
+      Username = request.Email, 
       Email = request.Email,
       PasswordHash = _passwordHasher.Hash(request.Password),
-      UserType = UserType.CLIENTE // Por padrão, todo signup cria um CLIENTE
+      UserType = UserType.CLIENTE 
     };
 
     _context.Customers.Add(customer);

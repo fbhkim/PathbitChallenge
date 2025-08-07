@@ -20,13 +20,13 @@ public class CepRapidService : ICepService
     var client = _httpClientFactory.CreateClient("CepRapid");
     try
     {
-      // A API ceprapido.com retorna um objeto JSON com as propriedades que precisamos
+      
       var response = await client.GetFromJsonAsync<CepApiResponse>($"cep/{cep}");
       return response;
     }
     catch (HttpRequestException ex)
     {
-      // Captura erros de rede ou status codes como 404 (Não Encontrado)
+      
       _logger.LogWarning(ex, "Falha ao buscar CEP {Cep}. Status Code: {StatusCode}", cep, ex.StatusCode);
       return null;
     }

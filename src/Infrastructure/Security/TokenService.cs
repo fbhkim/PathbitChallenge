@@ -25,13 +25,12 @@ public class TokenService : ITokenService
     {
       Subject = new ClaimsIdentity(new[]
         {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()), // Subject (ID do usuário)
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // JWT ID
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()), 
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), 
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("customerId", customer.Id.ToString()), // Claim customizada com o ID do Cliente
+                new Claim("customerId", customer.Id.ToString()), 
                 new Claim(ClaimTypes.Name, customer.Name),
-                new Claim(ClaimTypes.Role, user.UserType.ToString()) // Role do usuário
-            }),
+                new Claim(ClaimTypes.Role, user.UserType.ToString()) 
       Expires = DateTime.UtcNow.AddHours(Convert.ToInt32(_configuration["Jwt:DurationInHours"])),
       Issuer = _configuration["Jwt:Issuer"],
       Audience = _configuration["Jwt:Audience"],

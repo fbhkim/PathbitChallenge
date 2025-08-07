@@ -17,7 +17,7 @@ namespace PathbitChallenge.Infrastructure.Data
     {
       base.OnModelCreating(modelBuilder);
 
-      // Mapear as tabelas explicitamente com nomes minúsculos (conforme no PostgreSQL)
+      
       modelBuilder.Entity<User>().ToTable("users");
       modelBuilder.Entity<Customer>().ToTable("customers");
       modelBuilder.Entity<Product>().ToTable("products");
@@ -31,7 +31,7 @@ namespace PathbitChallenge.Infrastructure.Data
         property.SetColumnType("varchar(255)");
       }
 
-      // Configuração da entidade User
+      
       modelBuilder.Entity<User>(entity =>
       {
         entity.HasKey(e => e.Id);
@@ -41,7 +41,7 @@ namespace PathbitChallenge.Infrastructure.Data
         entity.Property(e => e.Username).HasColumnName("username");
         entity.Property(e => e.Email).HasColumnName("email");
         entity.Property(e => e.PasswordHash)
-                    .HasColumnName("password_hash")  // underline e minúsculo
+                    .HasColumnName("password_hash")  
                     .HasColumnType("varchar(255)")
                     .IsRequired();
         entity.Property(e => e.UserType)
@@ -50,7 +50,6 @@ namespace PathbitChallenge.Infrastructure.Data
                     .HasColumnName("usertype");
       });
 
-      // Configuração da entidade Customer
       modelBuilder.Entity<Customer>(entity =>
       {
         entity.HasKey(e => e.Id);
@@ -60,7 +59,7 @@ namespace PathbitChallenge.Infrastructure.Data
         entity.Property(e => e.Email).HasColumnName("email");
       });
 
-      // Configuração da entidade Product
+     
       modelBuilder.Entity<Product>(entity =>
       {
         entity.HasKey(e => e.Id);
@@ -73,7 +72,7 @@ namespace PathbitChallenge.Infrastructure.Data
                     .HasColumnName("availablequantity");
       });
 
-      // Configuração da entidade Order
+      
       modelBuilder.Entity<Order>(entity =>
       {
         entity.HasKey(e => e.Id);

@@ -14,7 +14,7 @@ public class Order
   public string DeliveryCep { get; set; } = string.Empty;
   public string DeliveryAddress { get; set; } = string.Empty;
 
-  // Propriedades de Navegação
+ 
   public Customer? Customer { get; set; }
   public Product? Product { get; set; }
 }
